@@ -13,8 +13,13 @@
 
 ## 代码使用示例
 ```Java
-DocGenerateService docGenerateService = new DocGenerateService();
-docGenerateService.create("D:/doc/","com.example.springdemo.controller");
+DocAutoGenerator docAutoGenerator = new DocAutoGenerator();
+GlobalConfig globalConfig = new GlobalConfig();
+globalConfig.setOutputDir("D:/doc/");
+globalConfig.setPackagePath("com.tuhu.saas.controller.fms");
+globalConfig.setOpen(true);
+docAutoGenerator.setGlobalConfig(globalConfig);
+docAutoGenerator.execute();
 ```
 
 # 文档展示
