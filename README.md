@@ -15,9 +15,9 @@
 ```Java
 DocAutoGenerator docAutoGenerator = new DocAutoGenerator();
 GlobalConfig globalConfig = new GlobalConfig();
-globalConfig.setOutputDir("D:/doc/");
-globalConfig.setPackagePath("com.tuhu.saas.controller.fms");
-globalConfig.setOpen(true);
+globalConfig.setOutputDir("D:/doc/"); //输出目录
+globalConfig.setPackagePath("com.tuhu.saas.controller.fms"); //controller包目录
+globalConfig.setOpen(true); //生成完文档后打开目录
 docAutoGenerator.setGlobalConfig(globalConfig);
 docAutoGenerator.execute();
 ```
