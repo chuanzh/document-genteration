@@ -1,4 +1,4 @@
-package com.github.chuanzh.bean;
+package com.github.chuanzh.po;
 
 import java.util.List;
 
