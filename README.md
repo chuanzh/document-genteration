@@ -23,7 +23,7 @@ docGenerateService.create("D:/doc/","com.example.springdemo.controller");
 
 # 更多
 1. 后续会支持HTML、word等更多格式  
-2. 支持请求参数自定义过滤规则
+2. 支持请求、返回参数自定义过滤规则
 3. 支持自定义模板
 4. ...
 
