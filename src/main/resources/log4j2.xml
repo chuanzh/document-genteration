@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Configuration status="DEBUG" packages="com.huoli.atrace.log.log4j2.layout">
+    <Properties>
+        <!--定义变量 -->
+        <Property name="LOG_HOME">logs</Property>
+        <Property name="PATTERN">%d{yyyy-MM-dd HH:mm:ss.SSS} %p [%t] %c{1.}.%M(%L) %m%n</Property>
+    </Properties>
+    <Appenders>
+        <Console name="console" target="SYSTEM_OUT">
+            <PatternLayout pattern="${PATTERN}"/>
+        </Console>
+
+        <!-- 主日志输出 -->
+        <RollingFile name="rollingFile" fileName="${LOG_HOME}/console.log"
+                     filePattern="${LOG_HOME}/console.log.%d{yyyy-MM-dd}">
+            <PatternLayout pattern="${PATTERN}"/>
+            <Policies>
+                <TimeBasedTriggeringPolicy/>
+            </Policies>
+        </RollingFile>
+
+    </Appenders>
+    <Loggers>
+        <Root level="INFO">
+            <!--<AppenderRef ref="rollingFile"/>-->
+            <AppenderRef ref="console"/>
+        </Root>
+
+    </Loggers>
+
+</Configuration>
