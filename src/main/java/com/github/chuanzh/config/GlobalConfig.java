@@ -43,6 +43,11 @@ public class GlobalConfig {
      */
     private boolean ignoreNoAnnotation = false;
 
+    /**
+     * 包含controller文件，为空表示所有
+     */
+    private String[] include = new String[]{};
+
     public String[] getRequestFilterFields() {
         return requestFilterFields;
     }
@@ -97,5 +102,13 @@ public class GlobalConfig {
 
     public void setIgnoreNoAnnotation(boolean ignoreNoAnnotation) {
         this.ignoreNoAnnotation = ignoreNoAnnotation;
+    }
+
+    public String[] getInclude() {
+        return include;
+    }
+
+    public void setInclude(String[] include) {
+        this.include = include;
     }
 }

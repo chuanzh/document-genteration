@@ -15,10 +15,7 @@ import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 import java.lang.reflect.Field;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * @author zhangchuan
@@ -37,7 +34,7 @@ public class DocAutoGenerator {
         }
         List<Map<String, Object>> params = null;
         try {
-            params = buildTemplateParam(globalConfig.getOutputDir(), globalConfig.getPackagePath());
+            params = buildTemplateParam(globalConfig.getOutputDir(), globalConfig.getPackagePath(), Arrays.asList(globalConfig.getInclude()));
         } catch (IOException e) {
             logger.info("构建模板参数失败", e);
             return;
@@ -73,10 +70,10 @@ public class DocAutoGenerator {
         return true;
     }
 
-    private List<Map<String, Object>> buildTemplateParam(String docPath, String packageName) throws IOException {
+    private List<Map<String, Object>> buildTemplateParam(String docPath, String packageName, List<String> includes) throws IOException {
         List<Map<String, Object>> params = new ArrayList<>();
         Map<String, Object> param = null;
-        List<ControllerInfo> controllerInfoList = packageUtil.handle(packageName);
+        List<ControllerInfo> controllerInfoList = packageUtil.handle(packageName, includes);
         for (ControllerInfo controllerInfo : controllerInfoList) {
             List<String> interfaceTitles = new ArrayList<String>();
             List<HashMap<String, Object>> interfaceDetails = new ArrayList<HashMap<String, Object>>();

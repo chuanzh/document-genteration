@@ -26,12 +26,15 @@ import java.util.List;
 public class ControllerInfoBuilder {
 
 	private static Logger logger = LoggerFactory.getLogger(ControllerInfoBuilder.class);
-	
-	public List<ControllerInfo> handle(String packageName){
+
+	public List<ControllerInfo> handle(String packageName, List<String> includes){
 		List<ControllerInfo> resultList = new ArrayList<ControllerInfo>();
 		try {
 			List<String> classNames = getClassName(packageName);
 			for (String className : classNames) {
+				if (includes.size() >0 && !includes.contains(className.substring(className.lastIndexOf(".")+1))) {
+					continue;
+				}
 				ControllerInfo controllerInfo = new ControllerInfo();
 				Class clazz = Class.forName(className);
 				if (clazz.getAnnotation(Api.class) != null) {
