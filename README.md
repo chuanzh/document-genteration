@@ -1,5 +1,5 @@
 # document-genteration
-基于Swagger接口文档自动生成，生成格式为MarkDown，后续会支持更多格式
+基于Swagger自动生成接口文档，生成格式为MarkDown，后续会支持更多格式
 
 # 使用方法
 ## 添加maven依赖
