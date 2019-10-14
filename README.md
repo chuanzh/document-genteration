@@ -34,4 +34,4 @@
 4. ...
 
 欢迎使用并提供宝贵的意见，也欢迎你一起参与开发  
-联系邮箱：zhuangchuan@gmail.com  
+联系邮箱：zhuangchuan0305@gmail.com  
