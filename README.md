@@ -16,7 +16,7 @@
     DocAutoGenerator docAutoGenerator = new DocAutoGenerator();
     GlobalConfig globalConfig = new GlobalConfig();
     globalConfig.setOutputDir("D:/doc/"); //输出目录
-    globalConfig.setPackagePath("com.tuhu.saas.controller.fms"); //controller包目录
+    globalConfig.setPackagePath("com.github.chuanzh.controller"); //controller包目录
     globalConfig.setInclude(new String[]{"UserController","AccountController"}); // 为空生成所有
     globalConfig.setOpen(true); //生成完文档后打开目录
     docAutoGenerator.setGlobalConfig(globalConfig);
