@@ -1,5 +1,5 @@
 # document-genteration
-基于Swagger接口文档自动生成，生成格式为MarkDown，后续会支持更多格式
+基于Swagger自动生成接口文档，生成格式为MarkDown，后续会支持更多格式
 
 # 使用方法
 ## 添加maven依赖
@@ -16,7 +16,7 @@
     DocAutoGenerator docAutoGenerator = new DocAutoGenerator();
     GlobalConfig globalConfig = new GlobalConfig();
     globalConfig.setOutputDir("D:/doc/"); //输出目录
-    globalConfig.setPackagePath("com.tuhu.saas.controller.fms"); //controller包目录
+    globalConfig.setPackagePath("com.github.chuanzh.controller"); //controller包目录
     globalConfig.setInclude(new String[]{"UserController","AccountController"}); // 为空生成所有
     globalConfig.setOpen(true); //生成完文档后打开目录
     docAutoGenerator.setGlobalConfig(globalConfig);
@@ -34,4 +34,4 @@
 4. ...
 
 欢迎使用并提供宝贵的意见，也欢迎你一起参与开发  
-联系邮箱：zhuangchuan@gmail.com  
+联系邮箱：zhuangchuan0305@gmail.com  
