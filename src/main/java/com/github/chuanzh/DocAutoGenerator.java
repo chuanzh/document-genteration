@@ -24,7 +24,7 @@ public class DocAutoGenerator {
 
     private Logger logger = LoggerFactory.getLogger(DocAutoGenerator.class);
 
-    private ControllerInfoBuilder packageUtil = new ControllerInfoBuilder();
+    private ControllerInfoBuilder controllerInfoBuilder = new ControllerInfoBuilder();
     private GlobalConfig globalConfig;
     private AbstractTemplateEngine abstractTemplateEngine;
 
@@ -73,7 +73,7 @@ public class DocAutoGenerator {
     private List<Map<String, Object>> buildTemplateParam(String docPath, String packageName, List<String> includes) throws IOException {
         List<Map<String, Object>> params = new ArrayList<>();
         Map<String, Object> param = null;
-        List<ControllerInfo> controllerInfoList = packageUtil.handle(packageName, includes);
+        List<ControllerInfo> controllerInfoList = controllerInfoBuilder.handle(packageName, includes);
         for (ControllerInfo controllerInfo : controllerInfoList) {
             List<String> interfaceTitles = new ArrayList<String>();
             List<HashMap<String, Object>> interfaceDetails = new ArrayList<HashMap<String, Object>>();
@@ -116,7 +116,8 @@ public class DocAutoGenerator {
                 if (!ClassHelperUtils.isListTypeName(requestBeanName)) {
                     doRequestInfo(requestBeanName, requestList);
                 }
-                if (subRequestBeanName != null) {
+                if (subRequestBeanName != null
+                        && !ClassHelperUtils.isBaseTypeName(subRequestBeanName.substring(subRequestBeanName.lastIndexOf(".")+1))) {
                     doRequestInfo(subRequestBeanName, requestList);
                 }
             }
@@ -204,7 +205,8 @@ public class DocAutoGenerator {
             if (!ClassHelperUtils.isListTypeName(responseBeanName)) {
                 doResponseInfo(responseBeanName, responseList);
             }
-            if (subResponseBeanName != null) {
+            if (subResponseBeanName != null
+                    && !ClassHelperUtils.isBaseTypeName(subResponseBeanName.substring(subResponseBeanName.lastIndexOf(".")+1))) {
                 doResponseInfo(subResponseBeanName, responseList);
             }
 
