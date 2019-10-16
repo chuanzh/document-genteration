@@ -100,13 +100,13 @@ public class ClassHelperUtils {
 
 	public static String subClass(Type type) {
 		String typeName = type.getTypeName();
-		String subTypeName = null;
+		String subTypeName = typeName;
 		String simpleName = null;
 		if (typeName.indexOf("<") != -1){
 			subTypeName = typeName.substring(typeName.lastIndexOf("<")+1, typeName.indexOf(">"));
 			simpleName = subTypeName.substring(subTypeName.lastIndexOf(".")+1);
 		}
-		if (simpleName == null || BASE_TYPE.contains(simpleName)){
+		if (simpleName != null && BASE_TYPE.contains(simpleName)){
 			return null;
 		}
 		return subTypeName;
