@@ -98,6 +98,20 @@ public class ClassHelperUtils {
 		return false;
 	}
 
+	public static String getGenericTypeName(Field field) {
+		String genericType = field.getGenericType().getTypeName();
+		if (genericType.indexOf("<") != -1) {
+			String simpleType = field.getType().getSimpleName();
+			String simpleSubName = genericType.substring(genericType.lastIndexOf(".")+1);
+			return simpleType+"<"+simpleSubName;
+		}
+		String typeName = genericType.substring(genericType.lastIndexOf(".")+1);
+		if (typeName.equals("T")) {
+			return "Object";
+		}
+		return typeName;
+	}
+
 	public static String subClass(Type type) {
 		String typeName = type.getTypeName();
 		String subTypeName = typeName;

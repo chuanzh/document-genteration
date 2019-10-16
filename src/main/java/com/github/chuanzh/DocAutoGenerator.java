@@ -99,12 +99,12 @@ public class DocAutoGenerator {
         return params;
     }
 
-    private List<List<Request>> buildRequestInfo(MethodInfo methodInfo) {
-        List<List<Request>> requestList = new ArrayList<>();
+    private LinkedHashMap<String,List<Request>> buildRequestInfo(MethodInfo methodInfo) {
+        LinkedHashMap<String,List<Request>> requestList = new LinkedHashMap<>();
         Request request = null;
         try {
             if (methodInfo.getRequests() != null) {
-                requestList.add(methodInfo.getRequests());
+                requestList.put("",methodInfo.getRequests());
             }
             if (methodInfo.getRequestBeanName() != null) {
                 String requestBeanName = methodInfo.getRequestBeanName();
@@ -127,7 +127,7 @@ public class DocAutoGenerator {
         return requestList;
     }
 
-    private void doRequestInfo(String beanName, List<List<Request>> requestList) {
+    private void doRequestInfo(String beanName, LinkedHashMap<String,List<Request>> requestList) {
         Class requestClass = null;
         try {
             requestClass = Class.forName(beanName);
@@ -136,14 +136,18 @@ public class DocAutoGenerator {
         }
         List<Field> requestFields = ClassHelperUtils.findClassAllField(requestClass);
         List<Request> requests = new ArrayList<>();
-        requestList.add(requests);
+        if (requestList.size() == 0) {
+            requestList.put("first",requests);
+        } else {
+            requestList.put(requestClass.getSimpleName(),requests);
+        }
         for (Field field : requestFields) {
             if (ClassHelperUtils.isFilterField(field.getName())) {
                 continue;
             }
             Request request = new Request();
             request.setName(field.getName());
-            request.setType(field.getType().getSimpleName());
+            request.setType(ClassHelperUtils.getGenericTypeName(field));
             if (field.getAnnotation(ApiModelProperty.class) !=null) {
                 ApiModelProperty apiModelProperty = field.getAnnotation(ApiModelProperty.class);
                 request.setDesc(apiModelProperty.value());
@@ -160,7 +164,7 @@ public class DocAutoGenerator {
         }
     }
 
-    private void doResponseInfo(String beanName, List<List<Response>> responseList) {
+    private void doResponseInfo(String beanName, LinkedHashMap<String,List<Response>> responseList) {
         Class responseClass = null;
         try {
             responseClass = Class.forName(beanName);
@@ -169,14 +173,18 @@ public class DocAutoGenerator {
         }
         List<Field> responseFields = ClassHelperUtils.findClassAllField(responseClass);
         List<Response> responses = new ArrayList<>();
-        responseList.add(responses);
+        if (responseList.size() == 0) {
+            responseList.put("first",responses);
+        } else {
+            responseList.put(responseClass.getSimpleName(),responses);
+        }
         for (Field field : responseFields) {
             if (ClassHelperUtils.isFilterField(field.getName())) {
                 continue;
             }
             Response response = new Response();
             response.setName(field.getName());
-            response.setType(field.getType().getSimpleName());
+            response.setType(ClassHelperUtils.getGenericTypeName(field));
             if (field.getAnnotation(ApiModelProperty.class) !=null) {
                 ApiModelProperty apiModelProperty = field.getAnnotation(ApiModelProperty.class);
                 response.setDesc(apiModelProperty.value());
@@ -192,8 +200,8 @@ public class DocAutoGenerator {
         }
     }
 
-    private List<List<Response>> buildResponseInfo(MethodInfo methodInfo) {
-        List<List<Response>> responseList = new ArrayList<>();
+    private LinkedHashMap<String,List<Response>> buildResponseInfo(MethodInfo methodInfo) {
+        LinkedHashMap<String,List<Response>> responseList = new LinkedHashMap<>();
         try {
             String responseBeanName = methodInfo.getResponseBeanName();
             String subResponseBeanName = null;
