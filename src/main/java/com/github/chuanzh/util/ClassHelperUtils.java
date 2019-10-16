@@ -103,7 +103,7 @@ public class ClassHelperUtils {
 		if (genericType.indexOf("<") != -1) {
 			String simpleType = field.getType().getSimpleName();
 			String simpleSubName = genericType.substring(genericType.lastIndexOf(".")+1);
-			return simpleType+"<"+simpleSubName;
+			return simpleType +"<"+simpleSubName;
 		}
 		String typeName = genericType.substring(genericType.lastIndexOf(".")+1);
 		if (typeName.equals("T")) {

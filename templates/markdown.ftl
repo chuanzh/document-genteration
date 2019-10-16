@@ -7,7 +7,7 @@ ${interfaceDetail["requestType"]!}
 
 ##### 请求参数
 <#list interfaceDetail["request"]?keys as key>
-<#if key_index==0>
+<#if key_index == 0>
 <#else>
 **${key!}**
 </#if>
