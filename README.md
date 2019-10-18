@@ -7,7 +7,7 @@
     <dependency>
         <groupId>com.github.chuanzh</groupId>
         <artifactId>document-generation</artifactId>
-        <version>1.0.1</version>
+        <version>1.0.2</version>
     </dependency>
 ```
 
